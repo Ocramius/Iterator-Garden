@@ -1,12 +1,8 @@
 <?php
 /**
- * Iterator Garden
- */
-
-/**
  * Class DebugIterator
  */
-class DebugIterator extends IteratorDecorator implements Iterator, DebugIteratorModes
+class DebugIteratorIterator extends IteratorIterator implements DebugIteratorModes
 {
     private $mode = self::MODE_ECHO;
 
@@ -57,8 +53,9 @@ class DebugIterator extends IteratorDecorator implements Iterator, DebugIterator
      * @return string
      * @is-trait DebugIterator::varLabel
      */
-    final protected function varLabel($var) {
-        return is_scalar($var) ? var_export($var, true) : gettype($var);
+    final protected function varLabel($var)
+    {
+        return is_scalar($var) ? var_export($var, TRUE) : gettype($var);
     }
 
     /**
@@ -68,7 +65,7 @@ class DebugIterator extends IteratorDecorator implements Iterator, DebugIterator
      */
     final protected function event($event)
     {
-        $message = sprintf("Iterating (%s): #%d %s", get_class($this->iterator), $this->index, $event);
+        $message = sprintf("Iterating (%s): #%d %s", get_class($this->getInnerIterator()), $this->index, $event);
 
         switch ($this->mode) {
             case self::MODE_NOTICE:
@@ -85,4 +82,3 @@ class DebugIterator extends IteratorDecorator implements Iterator, DebugIterator
         }
     }
 }
-

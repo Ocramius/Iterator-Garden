@@ -6,6 +6,7 @@
 spl_autoload_register(function ($class) {
     static $classMap = array(
         'DebugIterator'         => 'Debug/DebugIterator',
+        'DebugIteratorModes'    => 'Debug/DebugIteratorModes',
         'MagicDebugIterator'    => 'Debug/MagicDebugIterator',
         'SeekableDebugIterator' => 'Debug/SeekableDebugIterator',
     );
